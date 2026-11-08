@@ -1,23 +1,20 @@
-# Arifa Tabassum — academic portfolio
+# Arifa Tabassum's academic website
 
-Static academic website for Arifa Tabassum, focused on PhD opportunities and research collaboration.
+This package updates the existing [GitHub Pages website](https://arifa-tabassum.github.io/). It uses static HTML, CSS, and a small script for the mobile menu.
 
-## Publish with GitHub Pages
+## Upload the update
 
-1. Sign in as `Arifa-Tabassum`.
-2. Create a public repository named exactly `arifa-tabassum.github.io`. If it already exists, inspect its contents before replacing any files.
-3. Upload the contents of this directory to the repository root on the `main` branch. Keep the `assets` directory intact. Do not upload the ZIP file itself.
-4. In the repository, open **Settings → Pages**.
-5. Set the source to **Deploy from a branch**, select **main** and **/ (root)**, then save.
-6. After deployment succeeds, the site will be available at `https://arifa-tabassum.github.io/`.
+1. Extract the ZIP and open the extracted folder.
+2. Go to the [repository's upload page](https://github.com/Arifa-Tabassum/arifa-tabassum.github.io/upload/main).
+3. Drag the files and the `assets` folder from inside the extracted folder onto the upload page. Keep `index.html`, `style.css`, `script.js`, and `Arifa_Tabassum_Academic_CV.pdf` at the repository root. Keep the files inside `assets` together.
+4. Choose **Commit directly to the main branch**, then select **Commit changes**. GitHub Pages will publish from the existing source configuration.
+5. Once the deployment succeeds, open the [live website](https://arifa-tabassum.github.io/) and click **Download Academic CV**. The file should download as `Arifa_Tabassum_Academic_CV.pdf`.
+
+The PDF is the complete supplied CV, including its original phone number and academic referee contact details. Uploading it to the public repository makes those details publicly accessible.
 
 ## Edit the website
 
-- Main text: `index.html`
-- Publications and presentation filters: `script.js`
-- Colors, typography, and layout: `style.css`
-- Portrait: replace `assets/portrait.png` with your preferred image using the same name.
-
-The photo is cropped through CSS; the original image has not been retouched. The source PDF is not included because it contains phone and referee contact details. Academic years are omitted pending clarification of session, examination, and result dates.
-
-This site requires no build tools, paid services, or server-side code.
+- Update the academic content and publication links in `index.html`.
+- Update the layout and colors in `style.css`.
+- Replace `assets/portrait.webp` and `assets/portrait.png` to update the portrait. The PNG also supplies the social sharing preview.
+- To update the CV later, replace `Arifa_Tabassum_Academic_CV.pdf` and regenerate or replace `assets/cv-preview.webp` with an excerpt of the current CV. Keep the filenames the same.

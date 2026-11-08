@@ -1,14 +1,39 @@
-const works=[
-['2026','submitted','A Multimethod Analysis of Antifungal Susceptibility among Pediatric ICU Patients in Bangladesh','Sarker, M. F. R., et al., including Tabassum, A.','International Journal of Infectious Diseases · Manuscript submitted',''],
-['2024','published','Identifying Factors of Spatial Heterogeneity in COVID-19 Incidence for Dhaka Division, Bangladesh','Rahman, A., Tabassum, A., Tabassum, N., & Akter, M.','Jahangirnagar University Journal of Science, 44(1), 47–66','https://jos.ju-journal.org/jujs/article/view/35'],
-['2023','published','Mind the gap: Data availability, accessibility, transparency, and credibility during the COVID-19 pandemic, an international comparative appraisal','Rotulo, A., et al., including Tabassum, A.','PLOS Global Public Health, 3(4), e0001148','https://doi.org/10.1371/journal.pgph.0001148'],
-['2022','published','Job insecurity and mental health related outcomes among the humanitarian workers during COVID-19 pandemic: a cross-sectional study','Sultana, N., Asaduzzaman, M., Siddique, A. B., Tabassum, A., et al.','BMC Psychology, 10, 265','https://doi.org/10.1186/s40359-022-00974-7'],
-['2021','published','Fitting Spatial Joint Model for U.S Regional Influenza-like Illness (ILINet) Data Set','Rahman, A., Tabassum, A., & Akter, M.','Pure and Applied Mathematics Journal, 10(6), 127–138','https://doi.org/10.11648/j.pamj.20211006.12'],
-['2021','published','Impact of Gender and Parent Advice on Longitudinal Change in Children’s Mental Health Condition','Rahman, A., Tabassum, A., & Akter, M.','International Journal of Statistics and Economics, 22(2), 56–67',''],
-['2020','published','Model to access the factors of 10-year future risk of coronary heart disease (CHD) among people of Framingham, Massachusetts','Rahman, A., & Tabassum, A.','International Journal of Public Health Science, 9(3)',''],
-['2026','presentation','Evaluating the Linkage Between Disease Forecasts, Alerts, and Public Health Action in Bangladesh’s Climate-Informed Early Warning System (CI-EWS)','Tabassum, A., et al.','2nd Bangladesh FETP Conference · Poster · Abstract 66',''],
-['2026','presentation','Operationalizing Climate-Informed Disease Forecasting: A Probabilistic Deep Learning Early Warning System at National Scale','Tabassum, A., et al.','CEDAAH 2026, IWFM-BUET · Abstract A2026032',''],
-['2025','presentation','Signals to Safety: EWARS for Health Emergencies—Present Realities and Future Directions','Sarker, M. F. R., Tabassum, A., et al.','Annual Epidemiological Conference · Accepted poster; conference not held','']
-];
-document.querySelector('#works').innerHTML=works.map(([year,type,title,authors,venue,url])=>`<article class="work" data-type="${type}"><div class="year">${year}</div><div><div class="status">${type==='presentation'?'Conference presentation':type}</div><h3>${url?`<a href="${url}" target="_blank" rel="noopener">${title} ↗</a>`:title}</h3><p>${authors}</p><p>${venue}</p></div></article>`).join('');
-document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button))});document.querySelectorAll('.work').forEach(w=>w.hidden=button.dataset.filter!=='all'&&w.dataset.type!==button.dataset.filter)}));
+const menuButton = document.querySelector('.menu-toggle');
+const navigation = document.querySelector('#site-nav');
+const compactLayout = window.matchMedia('(max-width: 70rem)');
+
+function setMenuOpen(open) {
+  menuButton.setAttribute('aria-expanded', String(open));
+  navigation.hidden = compactLayout.matches && !open;
+}
+
+function syncNavigation() {
+  menuButton.hidden = !compactLayout.matches;
+  setMenuOpen(false);
+}
+
+menuButton.addEventListener('click', () => {
+  setMenuOpen(menuButton.getAttribute('aria-expanded') !== 'true');
+});
+
+navigation.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link || !compactLayout.matches) return;
+
+  setMenuOpen(false);
+  const destination = document.querySelector(link.hash);
+  if (destination) {
+    destination.tabIndex = -1;
+    destination.focus({ preventScroll: true });
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+    setMenuOpen(false);
+    menuButton.focus();
+  }
+});
+
+compactLayout.addEventListener('change', syncNavigation);
+syncNavigation();
