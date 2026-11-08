@@ -136,6 +136,21 @@ figure { margin: 0; }
 .feature-grid li + li { margin-top: .48rem; }
 .tags { gap: .4rem; margin: 1.45rem 0 0; }
 .tags li { padding: .23rem .62rem; border: 1px solid #a9c0b4; border-radius: .25rem; background: var(--paper); color: var(--accent-dark); font-size: .75rem; font-weight: 650; }
+.research-photos { margin-top: 1.9rem; padding-top: 1.35rem; border-top: 1px solid #b8cabf; }
+.research-photos h4 { margin-bottom: .75rem; }
+.photo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.event-photo { min-width: 0; border: 1px solid var(--rule); background: var(--white); }
+.event-photo a { display: block; position: relative; }
+.event-photo a:focus-visible { outline-offset: -4px; }
+.event-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--band); }
+.research-photos .event-photo img { aspect-ratio: 16 / 10; }
+.poster-photo img { object-position: center 36%; }
+.event-photo figcaption { display: grid; gap: .15rem; padding: .65rem .8rem; color: var(--muted); font-size: .78rem; line-height: 1.45; }
+.event-photo figcaption strong { color: var(--ink); font-size: .84rem; }
+.photo-open { position: absolute; inset: .5rem .5rem auto auto; display: grid; place-items: center; width: 1.85rem; height: 1.85rem; border-radius: .25rem; background: var(--white); color: var(--accent-dark); font-size: 1rem; }
+.event-photo a:hover .photo-open, .event-photo a:focus-visible .photo-open { background: var(--accent-dark); color: var(--white); }
+.photo-disclosure { margin-top: .9rem; }
+.photo-disclosure .photo-grid { padding: .15rem 0 .85rem; }
 .project-list { margin-top: 2.2rem; }
 .project-list > p { margin: .55rem 0 1.1rem; max-width: 82ch; }
 .disclosure { border-top: 1px solid var(--rule); }
@@ -197,6 +212,7 @@ figure { margin: 0; }
 .institution { color: var(--ink); font-weight: 650; }
 .presentation-list > li { border-top: 1px solid var(--rule); padding-block: 1.2rem; }
 .presentation-list h3 { font-size: 1.1rem; }
+.presentation-with-photo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(12rem, 19rem); gap: clamp(1rem, 4vw, 3rem); align-items: start; }
 
 .cv-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(1.5rem, 5vw, 4rem); }
 .cv-preview { border: 1px solid var(--rule); background: var(--white); padding: .55rem; }
@@ -229,7 +245,7 @@ figure { margin: 0; }
 
 @media (max-width: 38rem) {
   .site-header nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .05rem .6rem; }
-  .hero-grid, .feature-grid, .expertise-grid, .education-grid, .awards-grid, .cv-grid { grid-template-columns: 1fr; }
+  .hero-grid, .feature-grid, .photo-grid, .presentation-with-photo, .expertise-grid, .education-grid, .awards-grid, .cv-grid { grid-template-columns: 1fr; }
   .hero-grid { gap: 1.65rem; }
   .hero .portrait { width: min(100%, 15rem); }
   .roles { gap: .3rem .6rem; }
